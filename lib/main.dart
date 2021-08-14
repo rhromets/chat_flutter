@@ -4,7 +4,10 @@ import 'package:chat_flutter/screens/login_screen.dart';
 import 'package:chat_flutter/screens/registration_screen.dart';
 import 'package:chat_flutter/screens/chat_screen.dart';
 
-void main() => runApp(FlashChat());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(FlashChat());
+}
 
 class FlashChat extends StatelessWidget {
   @override
