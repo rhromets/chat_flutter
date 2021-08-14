@@ -1,6 +1,7 @@
 import 'package:chat_flutter/screens/login_screen.dart';
 import 'package:chat_flutter/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = "welcome_screen";
@@ -17,16 +18,12 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   void initState() {
     super.initState();
     controller = AnimationController(
-      duration: Duration(seconds: 7),
+      duration: Duration(seconds: 5),
       vsync: this,
     );
-
-    // animation = CurvedAnimation(parent: controller, curve: Curves.easeIn);
-    animation = ColorTween(begin: Colors.lightBlueAccent, end: Colors.blue[900])
+    animation = ColorTween(begin: Colors.white, end: Colors.grey[300])
         .animate(controller);
-
     controller.forward();
-
     animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         controller.reverse();
@@ -34,11 +31,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
         controller.forward();
       }
     });
-
     controller.addListener(() {
-      setState(() {
-        print(animation.value);
-      });
+      setState(() {});
     });
   }
 
@@ -67,12 +61,16 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     height: 60.0,
                   ),
                 ),
-                Text(
-                  'Flash Chat',
-                  style: TextStyle(
-                    fontSize: 45.0,
-                    fontWeight: FontWeight.w900,
-                  ),
+                AnimatedTextKit(
+                  animatedTexts: [
+                    TypewriterAnimatedText('Flash Chat',
+                        textStyle: TextStyle(
+                          fontSize: 45.0,
+                          fontWeight: FontWeight.w900,
+                        ),
+                        speed: Duration(milliseconds: 350)),
+                  ],
+                  repeatForever: true,
                 ),
               ],
             ),
