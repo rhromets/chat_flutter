@@ -3,7 +3,6 @@ import 'package:chat_flutter/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:chat_flutter/components/rounded_button.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = "welcome_screen";
@@ -16,24 +15,14 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   late AnimationController controller;
   late Animation animation;
 
-  // Define an async function to initialize FlutterFire
-  void initializeFlutterFire() async {
-    try {
-      await Firebase.initializeApp();
-    } catch (e) {
-      print(e);
-    }
-  }
-
   @override
   void initState() {
-    initializeFlutterFire();
     super.initState();
     controller = AnimationController(
-      duration: Duration(seconds: 5),
+      duration: Duration(seconds: 6),
       vsync: this,
     );
-    animation = ColorTween(begin: Colors.white, end: Colors.grey[300])
+    animation = ColorTween(begin: Colors.white, end: Colors.blueGrey)
         .animate(controller);
     controller.forward();
     animation.addStatusListener((status) {
